@@ -18,13 +18,20 @@ class MetadataMiddleware:
             'query_string':request.META.get('QUERY_STRING'),
             'content_type':request.META.get('CONTENT_TYPE'),
             'content_length':request.META.get('CONTENT_LENGTH'),
+            'referer':request.META.get('HTTP_REFERER'),
         }
         MetadataManager.set_request_metadata(request_metadata)
         response = self.get_response(request)
         if 'Authorization' in request.headers:
-            user_metadata = {
-                'Authorization':request.headers['Authorization'],
-            }
+            try:
+                # try decode jwt
+                import jwt
+                token = request.headers['Authorization'].replace('Bearer ', '')
+                user_metadata = jwt.decode(token, verify=False)
+            except:
+                user_metadata = {
+                    'Authorization':request.headers['Authorization'],
+                }
             MetadataManager.set_user_metadata(user_metadata)
         elif hasattr(request, 'user') and request.user.is_authenticated:
             user_metadata = {

@@ -53,3 +53,5 @@ Release notes
         - Fix documentation of the middleware.
     * 1.0.3
         - Fix WARNING default_auto_field.
+    * 2.0.0
+        - Add optional interaction with django_graphbox to build a graphql schema with queries to read the logs.
