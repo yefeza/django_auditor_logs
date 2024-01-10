@@ -70,8 +70,8 @@ for app in apps.get_app_configs():
                                 model_metadata[field.name] = str(getattr(instance, field.name))         
                         model_obj.objects.create(
                             id_model=instance.id,
-                            user_metadata=json.dumps(MetadataManager.get_user_metadata()),
-                            request_metadata=json.dumps(MetadataManager.get_request_metadata()),
+                            user_metadata=json.dumps(MetadataManager.get_user_metadata(), skipkeys=True),
+                            request_metadata=json.dumps(MetadataManager.get_request_metadata(), skipkeys=True),
                             model_metadata=model_metadata,
                             action=action,
                         )
