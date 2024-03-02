@@ -6,6 +6,10 @@ Installation
 
         pip install django-auditor-logs
 
+Important
+--------------------------------
+This package is not thread safe. It is designed to be used with a single thread. If you are using a multi-threaded server, you will need to use a thread-safe logging package.
+
 Quick start
 --------------------------------
 1. Add "django_auditor_logs" to your INSTALLED_APPS setting like this::

@@ -17,3 +17,11 @@ class MetadataManager:
     @classmethod
     def get_request_metadata(self):
         return self.request_metadata
+
+    @classmethod
+    def clear_user_metadata(self):
+        self.user_metadata = "Sin metadatos"
+
+    @classmethod
+    def clear_request_metadata(self):
+        self.request_metadata = "Sin metadatos"
